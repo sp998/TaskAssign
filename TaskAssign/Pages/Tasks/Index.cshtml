@@ -1,0 +1,61 @@
+﻿
+
+@page
+@model TaskAssign.Pages.Tasks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@if (Model.IsAdmin)
+{
+    <h1>Tasks</h1>
+
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmpTask[0].TaskId)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.EmpTask[0].TaskName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmpTask[0].TaskDescription)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.EmpTask)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaskId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaskName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaskDescription)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.TaskId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.TaskId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.TaskId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!Model.IsAdmin)
+{
+    <h1>You are not authorized to view this Page</h1>
+}

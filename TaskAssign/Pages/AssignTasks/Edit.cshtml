@@ -1,0 +1,50 @@
+﻿@page
+@model TaskAssign.Pages.AssignTasks.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>EmpAssign</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmpAssign.AssignId" />
+            <div class="form-group">
+                <label asp-for="EmpAssign.TaskId" class="control-label"></label>
+                <input asp-for="EmpAssign.TaskId" class="form-control" />
+                <span asp-validation-for="EmpAssign.TaskId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpAssign.EmpEmail" class="control-label"></label>
+                <input asp-for="EmpAssign.EmpEmail" class="form-control" />
+                <span asp-validation-for="EmpAssign.EmpEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpAssign.StartTime" class="control-label"></label>
+                <input asp-for="EmpAssign.StartTime" class="form-control" />
+                <span asp-validation-for="EmpAssign.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpAssign.EndTime" class="control-label"></label>
+                <input asp-for="EmpAssign.EndTime" class="form-control" />
+                <span asp-validation-for="EmpAssign.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

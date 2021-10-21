@@ -1,0 +1,58 @@
+﻿@page
+@model TaskAssign.Pages.ViewTasksAssignModel
+@{
+}
+
+@if (!(Model.AssignTasks.Count == 0))
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Task Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Assigned Date
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AssignTasks[0].Completed)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AssignTasks)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completed)
+            </td>
+
+            <td>
+                <form method="post">
+                    <input type="hidden" asp-for="Id" value=@item.AssignId />
+                    <input type="submit" value="Complete" class="btn btn-primary" /> 
+                </form>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>  }
+            else{
+        <h1>You don't have any Assigned Tasks yet.</h1>
+            
+            }
+

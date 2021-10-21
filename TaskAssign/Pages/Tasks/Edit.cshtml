@@ -1,0 +1,53 @@
+﻿@page
+@model TaskAssign.Pages.Tasks.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (Model.IsAdmin)
+{
+    <h1>Edit</h1>
+
+    <h4>EmpTask</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="EmpTask.TaskId" />
+                <div class="form-group">
+                    <label asp-for="EmpTask.TaskName" class="control-label"></label>
+                    <input asp-for="EmpTask.TaskName" class="form-control" />
+                    <span asp-validation-for="EmpTask.TaskName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmpTask.TaskDescription" class="control-label"></label>
+                    <input asp-for="EmpTask.TaskDescription" class="form-control" />
+                    <span asp-validation-for="EmpTask.TaskDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="EmpTask.Completed" /> @Html.DisplayNameFor(model => model.EmpTask.Completed)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-page="./Index">Back to List</a>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+}
+
+@if (!Model.IsAdmin)
+{
+    <h1>You are not authorized to view this Page</h1>
+}

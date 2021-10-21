@@ -1,0 +1,10 @@
+﻿@model TaskAssign.Model.EmpAssign
+@{
+    ViewData["Title"] = "CompleteTask";
+}
+
+<h1 class="text-success">Complete Task</h1>
+<form method="post" asp-action="Complete">
+    <input hidden asp-for="AssignId" />
+    <input type="submit" class="btn btn-success" value="Complete task" />
+</form>

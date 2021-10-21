@@ -1,0 +1,49 @@
+﻿@page
+@model TaskAssign.Pages.AssignTasks.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EmpAssign</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpAssign.TaskId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpAssign.TaskId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpAssign.EmpEmail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpAssign.EmpEmail)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpAssign.StartTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpAssign.StartTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpAssign.EndTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpAssign.EndTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpAssign.TotalHours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpAssign.TotalHours)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.EmpAssign.AssignId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

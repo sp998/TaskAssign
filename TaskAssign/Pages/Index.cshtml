@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@using Microsoft.AspNetCore.Identity
+@using TaskAssign.Areas.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Model.Output</h1>
+</div>
+<br />
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (!Model.IsAdmin)
+    { 
+
+
+
+     
+<div class="container-fluid text-center">
+    <p>You can view the tasks assigned to you.</p>
+    <a class="btn btn-primary" asp-controller="ViewTasks" asp-action="Index">View Your Tasks</a>
+</div>
+    }
+    else
+    {
+        <div class="text-center">
+            <p>Use "Manage Task to create a task" and use "Manage Assignments" to assign tasks to employees</p>
+        </div>
+        <div class="container-fluid text-center">
+            <a class="btn btn-primary" href="/Tasks">Manage Tasks</a>
+        </div>
+        <br />
+        <div class="container-fluid text-center">
+            <a class="btn btn-primary" href="/AssignTasks">Manage Tasks Assignments</a>
+        </div>
+
+    }
+}
+else { 
+    <div class="container-fluid text-center">
+        <p>You are not logged in please log in</p>
+        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@page
+@model TaskAssign.Pages.Tasks.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (Model.IsAdmin)
+{
+<h1>Details</h1>
+
+<div>
+    <h4>EmpTask</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpTask.TaskName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpTask.TaskName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpTask.TaskDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpTask.TaskDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmpTask.Completed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmpTask.Completed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.EmpTask.TaskId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+}
+@if (!Model.IsAdmin)
+{
+    <h1>You are not authorized to view this Page</h1>
+}

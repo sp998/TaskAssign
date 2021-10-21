@@ -1,0 +1,82 @@
+﻿@page
+@model TaskAssign.Pages.AssignTasks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Assigned Tasks</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+              Task Name
+            </th>
+            <th>
+               Assigned To
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpAssigns[0].StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpAssigns[0].EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpAssigns[0].TotalHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpAssigns[0].Completed)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.EmpAssigns) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpName)
+            </td>
+            <td>
+                @if (item.StartTime != DateTime.MinValue)
+                {
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                }
+                else
+                {
+                    <p align="center">-</p>
+                }
+            </td>
+            <td>
+                @if (item.EndTime != DateTime.MinValue)
+                {
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                }
+                else
+                {
+                    <p align="center">-</p>
+                }
+            </td>
+            <td>
+                @if (item.EndTime != DateTime.MinValue)
+                {
+               @Html.DisplayFor(model => item.TimePeriod)
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completed)
+            </td>
+
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.AssignId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

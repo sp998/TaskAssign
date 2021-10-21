@@ -1,0 +1,78 @@
+﻿@model TaskAssign.Model.StartViewModel
+@{
+    ViewData["Title"] = "StartTask";
+}
+
+<h1 class="text-info">@Model.TaskName</h1>
+
+
+<br />
+
+
+<div class="row">
+    <form method="post" class="col-4" asp-action="Start">
+        <input hidden asp-for="EmpAssign.AssignId" name="AssignId" />
+        <input type="submit" class="btn btn-info" value="start task" />
+    </form>
+
+    <form method="post" class="col-4" asp-action="End">
+        <input hidden asp-for="EmpAssign.AssignId" name="AssignId" />
+        <input type="submit" class="btn btn-danger" value="end task" />
+    </form>
+
+    <form method="post" class="col-4" asp-action="Complete">
+        <input hidden asp-for="EmpAssign.AssignId" name="AssignId" />
+        <label for="buttonAction"></label>
+        <input type="submit" class="btn  btn-success" value="complete task" />
+    </form>
+
+</div>
+<br /><br />
+<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    End Time
+                </th>
+
+                <th>
+                   Hours Worked 
+                </th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DoneTasks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @if(item.EndTime != DateTime.MinValue)
+                        {
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                        }
+                    </td>
+                    <td>
+                        @if (item.EndTime != DateTime.MinValue)
+                        {
+                             @Utils.TimeUtils.GetTime(item.EndTime-item.StartTime)
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table> 
+
+
+
+
+
+
+
